@@ -1,17 +1,19 @@
 CXX = g++
-CXXFLAGS = -Wall -Werror -std=c++17
+CXXFLAGS = -Wall -Werror -std=c++17 -Iinclude
 
 TARGET = load-balancer
-SRCS = main.cc
-OBJS = $(SRCS:.cc=.o)
+SRCS = src/main.cpp
+OBJS = $(SRCS:.cpp=.o)
 
 all: $(TARGET)
 
 $(TARGET): $(OBJS)
 	$(CXX) $(CXXFLAGS) -o $@ $^
 
-%.o: %.cc
+%.o: %.cpp
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 clean:
 	rm -f $(TARGET) $(OBJS)
+
+.PHONY: all clean
