@@ -7,10 +7,12 @@ bool WebServer::isProcessing() {
 }
 
 void WebServer::step() {
-    if(remainingTime_ == 0){
-        // TODO: maybe add handling for no requests left?
-        processing_ = false;
-        Request& nextRequest = askForRequest(caller_);
+    if(processing_ == false){
+        if(shuttingDown_){
+            return;
+        }
+        // TODO: add handling for no requests in queue
+        Request nextRequest = askForRequest(*caller_);
         std::cout << "Procssing Request for " << nextRequest.ip_in << std::endl;
         remainingTime_ = processTime_;
         processing_ = true;
@@ -18,8 +20,12 @@ void WebServer::step() {
     else{
         remainingTime_--;
     }
+
+    if(remainingTime_ == 0) {
+        processing_ = false;
+    }
 }
 
-Request& WebServer::askForRequest(LoadBalancer& caller){
+Request WebServer::askForRequest(LoadBalancer& caller){
     return caller.getNextRequest();
 }

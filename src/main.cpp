@@ -2,17 +2,30 @@
 #include <string>
 
 #include "Request.hpp"
+#include "LoadBalancer.hpp"
 #include "WebServer.hpp"
 
-int main() {
-    std::cout << "Starting simulation..." << std::endl;
-    
-    LoadBalancer lb;
-    WebServer server1(lb, 10);
+const int PROCESSING_TIME = 3;
+const int SCALING_BUFFER = 9;
+const int SERVERS = 3;
 
-    for(int i = 0; i < 10; i++) {
-        server1.step();
+
+int main() {
+    std::cout << "Setting up " << SERVERS << " initial servers..." << std::endl;
+
+    LoadBalancer lb(SCALING_BUFFER, PROCESSING_TIME);
+
+    for(int i = 0; i < SERVERS; i++){
+        lb.addServer();
     }
+
+    for(int j = 0; j < SERVERS * 50; j++) {
+        lb.addRequest();
+    }
+
+    std::cout << "Starting simulation..." << std::endl;
+
+    lb.start();
 
     return 0;
 }

@@ -2,7 +2,7 @@ CXX = g++
 CXXFLAGS = -Wall -Werror -std=c++17 -Iinclude
 
 TARGET = load-balancer
-SRCS = src/main.cpp src.WebServer.cpp
+SRCS = $(wildcard src/*.cpp)
 OBJS = $(SRCS:.cpp=.o)
 
 all: $(TARGET)
