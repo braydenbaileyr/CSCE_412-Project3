@@ -19,7 +19,7 @@ void LoadBalancer::addRequest() {
 }
 
 void LoadBalancer::addServer() {
-    WebServer server(*this, processingTime_);
+    WebServer server(*this);
     activeServers_.push_back(server);
 }
 

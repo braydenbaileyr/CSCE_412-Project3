@@ -7,8 +7,8 @@
 
 class LoadBalancer {
     public:
-        LoadBalancer(int scalingBuffer, int processingTime)
-            : scalingBuffer_(scalingBuffer), processingTime_(processingTime) {}
+        LoadBalancer(int scalingBuffer)
+            : scalingBuffer_(scalingBuffer) {}
 
         Request getNextRequest();
         void scaleWebServers();
@@ -20,7 +20,6 @@ class LoadBalancer {
         std::queue<Request> requestQueue_;
         int time_ = 0;
         int scalingBuffer_ = 0;
-        int processingTime_ = 0;
         std::vector<WebServer> activeServers_;
         void safeShutDownServers();
 

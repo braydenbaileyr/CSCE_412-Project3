@@ -5,7 +5,6 @@
 #include "LoadBalancer.hpp"
 #include "WebServer.hpp"
 
-const int PROCESSING_TIME = 3;
 const int SCALING_BUFFER = 9;
 const int SERVERS = 3;
 
@@ -13,7 +12,7 @@ const int SERVERS = 3;
 int main() {
     std::cout << "Setting up " << SERVERS << " initial servers..." << std::endl;
 
-    LoadBalancer lb(SCALING_BUFFER, PROCESSING_TIME);
+    LoadBalancer lb(SCALING_BUFFER);
 
     for(int i = 0; i < SERVERS; i++){
         lb.addServer();

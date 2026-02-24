@@ -14,7 +14,7 @@ void WebServer::step() {
         // TODO: add handling for no requests in queue
         Request nextRequest = askForRequest(*caller_);
         std::cout << "Procssing Request for " << nextRequest.ip_in << std::endl;
-        remainingTime_ = processTime_;
+        remainingTime_ = nextRequest.time;
         processing_ = true;
     }   
     else{
