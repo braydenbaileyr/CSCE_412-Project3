@@ -92,6 +92,9 @@ int main() {
     Firewall firewall(firewallStartIp, firewallEndIp);
 
     logger.log("[0] [Main] Setting up " + std::to_string(initialServers) + " servers");
+    logger.log("[0] [Main] Creating " + std::to_string(initialServers*10) + " requests");
+    logger.log("[0] [Main] Task lengths from 1-5 seconds");
+    logger.log("[0] [FW] Blocking all requests from " + firewallStartIp + " to " + firewallEndIp);
 
     LoadBalancer lb(scalingBuffer, logger, firewall);
 
