@@ -27,9 +27,7 @@ void WebServer::step() {
         if(!caller_->hasRequests()) return;
 
         Request nextRequest = askForRequest(*caller_);
-        // std::cout << "Server " << id << ": Recieved request" << std::endl;
         logger_->log("[" + std::to_string(caller_->getTime()) + "] [S" + std::to_string(id) + "] Received request (" + std::to_string(nextRequest.time) + "s)");
-        // std::cout << "Request IP IN: " << nextRequest.ip_in << std::endl;
         
         remainingTime_ = nextRequest.time;
         processing_ = true;
@@ -40,7 +38,6 @@ void WebServer::step() {
 
     if(remainingTime_ == 0) {
         processing_ = false;
-        // std::cout << "Server " << id << ": Finished processing request" << std::endl;
         logger_->log("[" + std::to_string(caller_->getTime()) + "] [S" + std::to_string(id) + "] Finished request");
     }
 }

@@ -96,8 +96,6 @@ void LoadBalancer::scaleWebServers() {
     int serverQty = activeServers_.size();
 
     if (queueSize > serverQty * 80) {
-        // add new server
-        // std::cout << "Adding server" << std::endl;
         logger_.log("[" + std::to_string(time_) + "] [LB] Scaling up");
         addServer();
     }
@@ -136,8 +134,6 @@ void LoadBalancer::start() {
     static std::mt19937 gen(std::random_device{}());
     static std::uniform_int_distribution<std::uint32_t> requestsFreq(0, 2);
     while(true) {
-        // std::cout << time_ << " seconds" << std::endl;
-
         if(time_ != 0 && time_ % scalingBuffer_ == 0) scaleWebServers();
 
         int requests = requestsFreq(gen);

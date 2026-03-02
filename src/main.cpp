@@ -93,8 +93,6 @@ int main() {
 
     logger.log("[0] [Main] Setting up " + std::to_string(initialServers) + " servers");
 
-    // std::cout << "Setting up " << initialServers << " initial servers..." << std::endl;
-
     LoadBalancer lb(scalingBuffer, logger, firewall);
 
     for(int i = 0; i < initialServers; i++){
@@ -104,8 +102,6 @@ int main() {
     for(int j = 0; j < initialServers * 100; j++) {
         lb.addRequest();
     }
-
-    // std::cout << "Starting simulation..." << std::endl;
 
     logger.log("[0] [Main] Starting simulation");
 
