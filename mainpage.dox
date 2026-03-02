@@ -1,0 +1,30 @@
+/**
+ * @mainpage Load Balancer Simulation
+ *
+ * @section overview Overview
+ * This project simulates a web request load balancer for a large company.
+ * Random requests are generated with input and output IPv4 addresses, a
+ * processing time, and a job type. The load balancer distributes those
+ * requests to active web servers and dynamically adjusts server count based on
+ * queue size.
+ *
+ * @section features Features
+ * - Random request generation with IPv4 source and destination addresses
+ * - Request queue managed with a FIFO structure
+ * - Dynamic web server scaling based on queue thresholds
+ * - Firewall blocking for a configured IP range
+ * - Persistent event logging to a log file
+ *
+ * @section workflow Workflow
+ * The program reads user input for the initial server count, scaling buffer,
+ * and blocked firewall range. It fills an initial queue, starts the simulation
+ * loop, adds new requests over time, and allows each server to process queued
+ * work one clock cycle at a time.
+ *
+ * @section files Code Organization
+ * - LoadBalancer manages the queue, scaling logic, and simulation clock
+ * - WebServer represents a worker that processes requests
+ * - Request stores the data for one request
+ * - Firewall blocks requests from a configured IP range
+ * - Logger writes simulation events to the log file
+ */
